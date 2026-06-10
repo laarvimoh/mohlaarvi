@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Moh Laarvi — Brand & Packaging Designer</title>
+<meta name="description" content="Mohamed Larbi Ait Abdellah — Senior Brand & Packaging Designer. Brand Identity, Packaging Design, Illustration. Based in Algeria, available worldwide."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  /* Brand palette extracted from avatar */
+  --blue:      #0664BB;
+  --blue-dark: #0450A0;
+  --blue-dim:  rgba(6,100,187,0.12);
+  --blue-line: rgba(6,100,187,0.3);
+  --orange:    #F5A623;
+  --orange-dim:rgba(245,166,35,0.12);
+
+  --bg:        #0C0C0F;
+  --bg2:       #111115;
+  --bg3:       #18181E;
+  --surface:   #202028;
+  --text:      #F4F0EC;
+  --muted:     #868280;
+  --subtle:    #333340;
+  --border:    rgba(244,240,236,0.07);
+  --radius:    8px;
+
+  --font: 'Cera Pro','DM Sans','Inter',sans-serif;
+  --body: 'Inter',sans-serif;
+}
+
+body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none}
+
+/* Cursor */
+.cur{position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s}
+.cur-dot{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.cur-ring{position:fixed;width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(6,100,187,.5);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
+.cur-ring.hov{width:50px;height:50px;border-color:var(--orange)}
+
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:28px 64px;transition:padding .3s,background .3s,backdrop-filter .3s}
+nav.sc{padding:16px 64px;background:rgba(12,12,15,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--font);font-size:19px;font-weight:700;letter-spacing:.02em;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:8px}
+.nav-logo-avatar{width:30px;height:30px;border-radius:50%;border:2px solid var(--blue);overflow:hidden;flex-shrink:0}
+.nav-logo-avatar img{width:100%;height:100%;object-fit:cover}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:13px;letter-spacing:.07em;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-hire{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:10px 22px;border-radius:100px;background:var(--blue);color:#fff !important;text-decoration:none;transition:background .2s,transform .2s}
+.nav-hire:hover{background:var(--blue-dark);transform:translateY(-1px)}
+
+/* Sections */
+section{padding:120px 64px}
+.wrap{max-width:1160px;margin:0 auto}
+
+/* Eyebrow */
+.ey{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+.ey::before{content:'';width:24px;height:1.5px;background:var(--orange);display:block}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:0 64px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero-bg-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(6,100,187,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(6,100,187,.04) 1px,transparent 1px);
+  background-size:64px 64px;
+}
+.hero-orb1{position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(6,100,187,.1) 0%,transparent 70%);top:-80px;right:100px;pointer-events:none}
+.hero-orb2{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.07) 0%,transparent 70%);bottom:120px;right:320px;pointer-events:none}
+
+.hero-inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr auto;gap:80px;align-items:center}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(6,100,187,.35);border-radius:100px;padding:6px 16px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:28px}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+h1{font-family:var(--font);font-size:clamp(44px,6vw,88px);font-weight:700;line-height:1.0;letter-spacing:-.025em;margin-bottom:10px}
+.hero-role-wrap{font-family:var(--font);font-size:clamp(44px,6vw,88px);font-weight:700;line-height:1.0;letter-spacing:-.025em;margin-bottom:28px;height:1.05em;overflow:hidden}
+.hero-roles{display:flex;flex-direction:column;animation:roleSlide 10s infinite}
+@keyframes roleSlide{0%,26%{transform:translateY(0)}33%,59%{transform:translateY(-1.05em)}66%,92%{transform:translateY(-2.1em)}99%,100%{transform:translateY(0)}}
+.hero-role{color:var(--blue)}
+
+.hero-sub{font-size:17px;font-weight:300;color:var(--muted);max-width:440px;line-height:1.75;margin-bottom:40px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+.btn-blue{display:inline-flex;align-items:center;gap:9px;background:var(--blue);color:#fff;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:15px 28px;border-radius:100px;text-decoration:none;transition:background .2s,transform .2s}
+.btn-blue:hover{background:var(--blue-dark);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--subtle);color:var(--muted);font-size:13px;padding:15px 26px;border-radius:100px;text-decoration:none;transition:border-color .2s,color .2s}
+.btn-ghost:hover{border-color:var(--blue);color:var(--text)}
+.btn-ghost svg{transition:transform .2s}
+.btn-ghost:hover svg{transform:translateX(3px)}
+
+.hero-stats{display:flex;gap:44px;margin-top:60px;padding-top:40px;border-top:1px solid var(--border)}
+.stat-n{font-family:var(--font);font-size:36px;font-weight:700;color:var(--blue);line-height:1}
+.stat-l{font-size:12px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;margin-top:5px}
+
+/* Avatar */
+.hero-avatar-wrap{position:relative;flex-shrink:0}
+.avatar-ring{width:260px;height:260px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--blue),var(--orange));box-shadow:0 0 50px rgba(6,100,187,.2)}
+.avatar-inner{width:100%;height:100%;border-radius:50%;background:var(--bg3);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.avatar-inner img{width:100%;height:100%;object-fit:cover}
+.avatar-badge{position:absolute;bottom:10px;right:-16px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:11px 16px;font-size:13px;font-weight:500;white-space:nowrap;display:flex;align-items:center;gap:7px}
+.green-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0}
+
+/* ── WORK ── */
+#work{background:var(--bg2)}
+.work-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:52px;gap:32px}
+.work-head h2{font-family:var(--font);font-size:clamp(28px,3.5vw,50px);font-weight:700;line-height:1.1}
+.work-head h2 span{color:var(--blue)}
+
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.wcard{border-radius:14px;overflow:hidden;background:var(--bg3);border:1px solid var(--border);cursor:pointer;transition:border-color .3s,transform .3s}
+.wcard:hover{border-color:var(--blue);transform:translateY(-4px)}
+.wcard-img{position:relative;overflow:hidden;aspect-ratio:4/3}
+.wcard-img img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease}
+.wcard:hover .wcard-img img{transform:scale(1.05)}
+.wcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,15,.95) 0%,rgba(12,12,15,.2) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;opacity:0;transition:opacity .3s}
+.wcard:hover .wcard-overlay{opacity:1}
+.ov-cat{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:5px}
+.ov-title{font-family:var(--font);font-size:20px;font-weight:700;margin-bottom:13px}
+.ov-link{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none}
+.wcard-meta{padding:18px 22px;border-top:1px solid var(--border)}
+.wcard-name{font-family:var(--font);font-size:15px;font-weight:700;margin-bottom:3px}
+.wcard-type{font-size:12px;color:var(--muted)}
+
+/* ── ABOUT ── */
+#about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:auto 1fr;gap:80px;align-items:start;max-width:1160px;margin:0 auto}
+.about-left{flex-shrink:0}
+.about-img-wrap{position:relative;width:300px}
+.about-img-box{width:300px;height:360px;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--bg3)}
+.about-img-box img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.about-img-badge{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;padding:10px 20px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+
+.about-content{padding-top:8px}
+.about-content h2{font-family:var(--font);font-size:clamp(28px,3.5vw,48px);font-weight:700;line-height:1.15;margin-bottom:22px}
+.about-content h2 span{color:var(--blue)}
+.about-content p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:14px;font-weight:300}
+.about-content p strong{color:var(--text);font-weight:600}
+
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 32px}
+.atag{font-size:12px;letter-spacing:.07em;padding:6px 14px;border-radius:100px;border:1px solid var(--subtle);color:var(--muted)}
+.atag.hi{border-color:rgba(6,100,187,.4);color:var(--blue)}
+
+.cred-list{display:flex;flex-direction:column;gap:14px}
+.cred-row{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;transition:border-color .25s}
+.cred-row:hover{border-color:var(--blue)}
+.cred-ico{width:38px;height:38px;border-radius:9px;background:var(--surface);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px}
+.cred-title{font-size:14px;font-weight:600;margin-bottom:2px}
+.cred-sub{font-size:12px;color:var(--muted)}
+.cred-yr{font-size:11px;color:var(--orange);letter-spacing:.07em;margin-top:4px}
+
+/* ── SERVICES ── */
+#services{background:var(--bg2)}
+#services h2{font-family:var(--font);font-size:clamp(28px,3.5vw,50px);font-weight:700;line-height:1.1;margin-bottom:52px}
+#services h2 span{color:var(--blue)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:16px;overflow:hidden}
+.svc-card{background:var(--bg2);padding:40px 34px;transition:background .3s}
+.svc-card:hover{background:var(--bg3)}
+.svc-num{font-family:var(--font);font-size:12px;font-weight:700;letter-spacing:.15em;color:var(--orange);margin-bottom:18px}
+.svc-name{font-family:var(--font);font-size:21px;font-weight:700;margin-bottom:12px}
+.svc-desc{font-size:14px;color:var(--muted);line-height:1.8}
+.svc-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.svc-pill{font-size:11px;padding:4px 11px;border-radius:100px;border:1px solid var(--subtle);color:var(--muted)}
+
+/* ── PROCESS ── */
+#process{background:var(--bg)}
+#process h2{font-family:var(--font);font-size:clamp(28px,3.5vw,50px);font-weight:700;line-height:1.1;margin-bottom:52px}
+#process h2 span{color:var(--blue)}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.proc-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:34px 26px;transition:border-color .25s,transform .3s}
+.proc-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.proc-n{font-family:var(--font);font-size:44px;font-weight:700;color:var(--blue-dim);border-bottom:1px solid var(--border);padding-bottom:18px;margin-bottom:18px;line-height:1}
+.proc-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:7px}
+.proc-title{font-family:var(--font);font-size:17px;font-weight:700;margin-bottom:10px}
+.proc-desc{font-size:13px;color:var(--muted);line-height:1.75}
+
+/* ── PHILOSOPHY ── */
+#philosophy{background:var(--bg2)}
+.phil-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1160px;margin:0 auto}
+.phil-quote-text{font-family:var(--font);font-size:clamp(22px,2.5vw,34px);font-weight:700;line-height:1.35;margin-bottom:20px}
+.phil-quote-text em{font-style:italic;color:var(--blue)}
+.phil-attr{font-size:13px;color:var(--muted)}
+.phil-list{display:flex;flex-direction:column;gap:14px}
+.phil-item{display:flex;gap:16px;align-items:flex-start;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:20px 22px;transition:border-color .25s}
+.phil-item:hover{border-color:var(--orange)}
+.phil-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.phil-t{font-size:14px;font-weight:600;margin-bottom:4px}
+.phil-d{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start;max-width:1160px;margin:0 auto}
+.contact-left h2{font-family:var(--font);font-size:clamp(28px,3.5vw,50px);font-weight:700;line-height:1.1;margin-bottom:18px}
+.contact-left h2 span{color:var(--blue)}
+.contact-left p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:36px;font-weight:300}
+.clink{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;text-decoration:none;margin-bottom:12px;transition:border-color .25s,transform .25s}
+.clink:hover{border-color:var(--blue);transform:translateX(4px)}
+.clink-ico{width:38px;height:38px;border-radius:9px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.clink-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:3px}
+.clink-val{font-size:14px;font-weight:500;color:var(--text)}
+
+.cform{display:flex;flex-direction:column;gap:15px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.fi,.fs,.ft{background:var(--bg2);border:1px solid var(--subtle);color:var(--text);font-family:var(--body);font-size:14px;padding:13px 16px;border-radius:10px;outline:none;width:100%;transition:border-color .2s;appearance:none}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--blue)}
+.fi::placeholder,.ft::placeholder{color:rgba(134,130,128,.4)}
+.ft{resize:vertical;min-height:130px}
+.form-send{background:var(--blue);color:#fff;font-family:var(--body);font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:16px 28px;border:none;border-radius:100px;cursor:none;transition:background .2s,transform .2s;width:100%}
+.form-send:hover{background:var(--blue-dark);transform:translateY(-1px)}
+
+/* Footer */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:38px 64px}
+.foot-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.foot-logo{font-family:var(--font);font-size:17px;font-weight:700;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px}
+.foot-logo-dot{width:6px;height:6px;border-radius:50%;background:var(--blue)}
+.foot-links{display:flex;gap:28px}
+.foot-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
+.foot-links a:hover{color:var(--text)}
+.foot-copy{font-size:12px;color:var(--muted)}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rv.on{opacity:1;transform:none}
+.rv1{opacity:0;transform:translateY(22px);transition:opacity .6s .1s ease,transform .6s .1s ease}
+.rv1.on{opacity:1;transform:none}
+
+/* Mobile */
+@media(max-width:960px){
+  nav{padding:20px 24px}nav.sc{padding:14px 24px}.nav-links{display:none}
+  section{padding:80px 24px}
+  #hero{padding:0 24px}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-avatar-wrap{display:none}
+  .hero-stats{gap:24px;flex-wrap:wrap}
+  .work-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .about-left{display:none}
+  .svc-grid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .phil-wrap{grid-template-columns:1fr;gap:48px}
+  .contact-wrap{grid-template-columns:1fr;gap:56px}
+  .form-row{grid-template-columns:1fr}
+  footer{padding:36px 24px}
+  .foot-inner{flex-direction:column;text-align:center}
+}
+@media(max-width:560px){.proc-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.cur,.cur-ring{display:none}body{cursor:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="cur" id="curDot"><div class="cur-dot"></div></div>
+<div class="cur-ring" id="curRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-avatar"><img src="avatar.png" alt="Moh"/></div>
+    MohLaarvi
+  </a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="mailto:contact@increo.studio" class="nav-hire">Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orb1"></div>
+    <div class="hero-orb2"></div>
+  </div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="badge-dot"></span>Open for projects · 2026</div>
+      <h1>I'm Moh Laarvi,</h1>
+      <div class="hero-role-wrap">
+        <div class="hero-roles">
+          <span class="hero-role">Brand Designer.</span>
+          <span class="hero-role">Packaging Expert.</span>
+          <span class="hero-role">Illustrator.</span>
+        </div>
+      </div>
+      <p class="hero-sub">I craft visual identities and packaging systems that are precise, strategic, and built to make brands impossible to ignore.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn-blue">
+          See My Work
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn-ghost">
+          Get in Touch
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-n">3+</div><div class="stat-l">Years at Orion Lab</div></div>
+        <div><div class="stat-n">20+</div><div class="stat-l">Brands crafted</div></div>
+        <div><div class="stat-n">100%</div><div class="stat-l">Print-ready delivery</div></div>
+      </div>
+    </div>
+    <div class="hero-avatar-wrap">
+      <div class="avatar-ring">
+        <div class="avatar-inner">
+          <img src="avatar.png" alt="Moh Laarvi — Brand & Packaging Designer"/>
+        </div>
+      </div>
+      <div class="avatar-badge"><span class="green-dot"></span>Available for freelance</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="work-head rv">
+      <div>
+        <div class="ey">Selected Work</div>
+        <h2>Projects that <span>speak for themselves.</span></h2>
+      </div>
+      <a href="https://www.behance.net/laarvimoh" target="_blank" class="btn-ghost" style="white-space:nowrap">
+        Full Portfolio on Behance
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="work-grid rv">
+
+      <div class="wcard" onclick="window.open('https://www.behance.net/gallery/249933977/increo','_blank')">
+        <div class="wcard-img">
+          <img src="thumb_increo.jpg" alt="Increo Studio Identity"/>
+          <div class="wcard-overlay">
+            <div class="ov-cat">Brand Identity · Logo System</div>
+            <div class="ov-title">Increo Studio</div>
+            <a class="ov-link" href="https://www.behance.net/gallery/249933977/increo" target="_blank" onclick="event.stopPropagation()">View Case Study <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="wcard-meta">
+          <div class="wcard-name">Increo Studio</div>
+          <div class="wcard-type">Brand Identity · Logo Design · Visual System</div>
+        </div>
+      </div>
+
+      <div class="wcard" onclick="window.open('https://www.behance.net/laarvimoh','_blank')">
+        <div class="wcard-img">
+          <img src="thumb_kastelo.jpg" alt="Kastelo Pastry Brand"/>
+          <div class="wcard-overlay">
+            <div class="ov-cat">Brand Identity · Crest Design</div>
+            <div class="ov-title">Kastelo</div>
+            <a class="ov-link" href="https://www.behance.net/laarvimoh" target="_blank" onclick="event.stopPropagation()">View on Behance <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="wcard-meta">
+          <div class="wcard-name">Kastelo</div>
+          <div class="wcard-type">Brand Identity · Heraldic Crest · Pastry Shop</div>
+        </div>
+      </div>
+
+      <div class="wcard" onclick="window.open('https://www.behance.net/laarvimoh','_blank')">
+        <div class="wcard-img">
+          <img src="thumb_logofolio.jpg" alt="Logofolio 2026"/>
+          <div class="wcard-overlay">
+            <div class="ov-cat">Logo Design · Brand Identity</div>
+            <div class="ov-title">Logofolio 2026</div>
+            <a class="ov-link" href="https://www.behance.net/laarvimoh" target="_blank" onclick="event.stopPropagation()">View on Behance <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="wcard-meta">
+          <div class="wcard-name">Logofolio 2026</div>
+          <div class="wcard-type">Herable · MHS · Engline · Zkibaty · Nexys · Increo</div>
+        </div>
+      </div>
+
+      <div class="wcard" onclick="window.open('https://www.behance.net/laarvimoh','_blank')">
+        <div class="wcard-img">
+          <img src="thumb_tabletalk.jpg" alt="Table Talk Brand Guidelines"/>
+          <div class="wcard-overlay">
+            <div class="ov-cat">Brand Identity · Style Guide</div>
+            <div class="ov-title">Table Talk</div>
+            <a class="ov-link" href="https://www.behance.net/laarvimoh" target="_blank" onclick="event.stopPropagation()">View on Behance <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="wcard-meta">
+          <div class="wcard-name">Table Talk</div>
+          <div class="wcard-type">Brand Identity · Brand Style Guidelines</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left rv">
+      <div class="about-img-wrap">
+        <div class="about-img-box">
+          <img src="avatar.png" alt="Moh Laarvi"/>
+        </div>
+        <div class="about-img-badge">@mohlaarvi</div>
+      </div>
+    </div>
+    <div class="rv1">
+      <div class="ey">About me</div>
+      <h2>Science-trained.<br><span>Design-driven.</span></h2>
+      <p>I'm <strong>Mohamed Larbi Ait Abdellah</strong> — a Senior Graphic Designer based in Algeria with an unusual background: a Master's in Applied Microbiology that taught me to treat every design problem like a research question. Precise, methodical, and always chasing the right answer.</p>
+      <p>Currently <strong>Senior Graphic Designer at Orion Lab</strong>, specializing in pharmaceutical packaging design and print production. Freelancing under <strong>@mohlaarvi</strong> for brand identity clients across Algeria, the MENA region, and internationally.</p>
+      <p>Co-founder of <strong>Increo Studio</strong> — a creative studio combining brand design with web development and AI strategy.</p>
+      <div class="about-tags">
+        <span class="atag hi">Brand Identity</span>
+        <span class="atag hi">Packaging Design</span>
+        <span class="atag hi">Illustration</span>
+        <span class="atag">Adobe CC</span>
+        <span class="atag">Print Production</span>
+        <span class="atag">Visual Systems</span>
+        <span class="atag">Typography</span>
+        <span class="atag">Pharmaceutical</span>
+      </div>
+      <div class="cred-list">
+        <div class="cred-row"><div class="cred-ico">🏢</div><div><div class="cred-title">Senior Graphic Designer — Orion Lab</div><div class="cred-sub">Pharmaceutical packaging & brand design · Oran, Algeria</div><div class="cred-yr">2023 – Present</div></div></div>
+        <div class="cred-row"><div class="cred-ico">✦</div><div><div class="cred-title">Co-Founder & Creative Director — Increo Studio</div><div class="cred-sub">Branding & identity · behance.net/gallery/249933977/increo</div><div class="cred-yr">2025 – Present</div></div></div>
+        <div class="cred-row"><div class="cred-ico">🎓</div><div><div class="cred-title">Branding & Brand Management — MTF Institute</div><div class="cred-sub">Professional Diploma · Digital Marketing · Adobe CC Certified</div><div class="cred-yr">Certified</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="ey rv">What I do</div>
+    <h2 class="rv">Every service built around<br><span>making your brand unforgettable.</span></h2>
+    <div class="svc-grid rv">
+      <div class="svc-card">
+        <div class="svc-num">01</div>
+        <div class="svc-name">Brand Identity</div>
+        <p class="svc-desc">Full visual identity systems — logo design, color systems, typography, brand guidelines, and everything needed to make your brand coherent and consistent wherever it appears.</p>
+        <div class="svc-pills"><span class="svc-pill">Logo Design</span><span class="svc-pill">Brand Guidelines</span><span class="svc-pill">Visual Systems</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">02</div>
+        <div class="svc-name">Packaging Design</div>
+        <p class="svc-desc">Print-ready packaging for pharmaceutical, FMCG, and consumer brands. I understand compliance requirements, material specs, and the precision that production demands.</p>
+        <div class="svc-pills"><span class="svc-pill">Pharma</span><span class="svc-pill">Labels & Boxes</span><span class="svc-pill">Print-Ready</span></div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-num">03</div>
+        <div class="svc-name">Illustration</div>
+        <p class="svc-desc">Custom digital illustration for brands, editorial content, and campaigns. Character design, conceptual art, and branded visual systems that add personality and depth.</p>
+        <div class="svc-pills"><span class="svc-pill">Digital Art</span><span class="svc-pill">Character Design</span><span class="svc-pill">Brand Illustration</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="ey rv">How I work</div>
+    <h2 class="rv">A process built on <span>clarity and craft.</span></h2>
+    <div class="proc-grid rv">
+      <div class="proc-card"><div class="proc-n">01</div><div class="proc-label">Discover</div><div class="proc-title">Deep Brief</div><p class="proc-desc">I immerse in your brand, audience, and competitors before touching any tool. Strategy first, always.</p></div>
+      <div class="proc-card"><div class="proc-n">02</div><div class="proc-label">Explore</div><div class="proc-title">Concept Development</div><p class="proc-desc">Multiple directions, clearly presented. I show my thinking — not just the final result — so you understand the why.</p></div>
+      <div class="proc-card"><div class="proc-n">03</div><div class="proc-label">Refine</div><div class="proc-title">Collaborative Polish</div><p class="proc-desc">Two structured revision rounds. We iterate together until everything is exactly right — no rushed decisions.</p></div>
+      <div class="proc-card"><div class="proc-n">04</div><div class="proc-label">Deliver</div><div class="proc-title">Complete Handoff</div><p class="proc-desc">Production files, brand guidelines, and everything you need to use your brand confidently — forever.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="phil-wrap">
+    <div class="rv">
+      <div class="ey">My approach</div>
+      <p class="phil-quote-text">"Design is <em>not decoration.</em><br>It's the clearest signal your brand sends before you say a word."</p>
+      <p class="phil-attr">— Moh Laarvi · Senior Brand Designer</p>
+    </div>
+    <div class="phil-list rv1">
+      <div class="phil-item"><div class="phil-icon">🔬</div><div><div class="phil-t">Precision from science</div><p class="phil-d">My microbiology background taught me that details are never trivial. I apply that same rigor to every design decision.</p></div></div>
+      <div class="phil-item"><div class="phil-icon">🎯</div><div><div class="phil-t">Strategy before aesthetics</div><p class="phil-d">Beautiful work that doesn't serve a goal is just art. Every visual choice is connected to a clear strategic intention.</p></div></div>
+      <div class="phil-item"><div class="phil-icon">🤝</div><div><div class="phil-t">Clients as collaborators</div><p class="phil-d">You know your brand's soul. I know how to translate it visually. The best results come from both of us at the table.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <div class="rv">
+      <div class="ey">Let's work together</div>
+      <h2>Ready to build<br><span>something great?</span></h2>
+      <p>I take on a limited number of projects each month to give every client the focus they deserve. Have a brand challenge? Let's talk.</p>
+      <a href="mailto:contact@increo.studio" class="clink"><div class="clink-ico">✉️</div><div><div class="clink-label">Email</div><div class="clink-val">contact@increo.studio</div></div></a>
+      <a href="https://www.behance.net/laarvimoh" target="_blank" class="clink"><div class="clink-ico">🎨</div><div><div class="clink-label">Behance Portfolio</div><div class="clink-val">behance.net/laarvimoh</div></div></a>
+      <a href="https://instagram.com/mohlaarvi" target="_blank" class="clink"><div class="clink-ico">📷</div><div><div class="clink-label">Instagram</div><div class="clink-val">@mohlaarvi</div></div></a>
+    </div>
+    <div class="cform rv1">
+      <div class="form-row">
+        <div class="fg"><label class="fl">First name</label><input type="text" class="fi" placeholder="Ahmed"/></div>
+        <div class="fg"><label class="fl">Last name</label><input type="text" class="fi" placeholder="Al-Rashid"/></div>
+      </div>
+      <div class="fg"><label class="fl">Email</label><input type="email" class="fi" placeholder="you@company.com"/></div>
+      <div class="fg"><label class="fl">Company / Brand</label><input type="text" class="fi" placeholder="Your brand name"/></div>
+      <div class="fg">
+        <label class="fl">Service needed</label>
+        <select class="fs">
+          <option value="" disabled selected>Select a service</option>
+          <option>Brand Identity System</option>
+          <option>Packaging Design</option>
+          <option>Illustration</option>
+          <option>Brand Refresh</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="fg"><label class="fl">Tell me about your project</label><textarea class="ft" placeholder="What are you building? What problem needs solving?"></textarea></div>
+      <button class="form-send" onclick="window.location.href='mailto:contact@increo.studio'">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <a href="#" class="foot-logo"><span class="foot-logo-dot"></span>MohLaarvi</a>
+    <div class="foot-links">
+      <a href="#work">Work</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="https://www.behance.net/laarvimoh" target="_blank">Behance</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <span class="foot-copy">© 2026 Mohamed Larbi Ait Abdellah. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+// Cursor
+const dot=document.getElementById('curDot'),ring=document.getElementById('curRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.wcard,.cred-row,.svc-card,.proc-card,.phil-item,.clink').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('hov'));
+});
+// Nav
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>50));
+// Reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),i*80);obs.unobserve(e.target)}});
+},{threshold:.08});
+document.querySelectorAll('.rv,.rv1').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
