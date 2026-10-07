@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet"/>
+<!-- Using GSAP and ScrollTrigger for smooth premium animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -118,8 +121,7 @@ h1{font-family:var(--font);font-size:clamp(44px,6vw,88px);font-weight:700;line-h
 .wcard{border-radius:14px;overflow:hidden;background:var(--bg3);border:1px solid var(--border);cursor:pointer;transition:border-color .3s,transform .3s}
 .wcard:hover{border-color:var(--blue);transform:translateY(-4px)}
 .wcard-img{position:relative;overflow:hidden;aspect-ratio:4/3}
-.wcard-img img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease}
-.wcard:hover .wcard-img img{transform:scale(1.05)}
+.wcard-img img{width:100%;height:100%;object-fit:cover;object-position:top;}
 .wcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,15,.95) 0%,rgba(12,12,15,.2) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;opacity:0;transition:opacity .3s}
 .wcard:hover .wcard-overlay{opacity:1}
 .ov-cat{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:5px}
@@ -227,11 +229,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:38px 64p
 .foot-links a:hover{color:var(--text)}
 .foot-copy{font-size:12px;color:var(--muted)}
 
-/* Reveal */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
-.rv.on{opacity:1;transform:none}
-.rv1{opacity:0;transform:translateY(22px);transition:opacity .6s .1s ease,transform .6s .1s ease}
-.rv1.on{opacity:1;transform:none}
+/* Reveal - Handled by GSAP now */
+.rv, .rv1 { opacity: 0; transform: translateY(30px); }
 
 /* Mobile */
 .menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 24px; cursor: pointer; }
@@ -357,7 +356,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:38px 64p
         <div class="work-grid rv">
       <div class="wcard" onclick="openProjectModal(this)">
         <div class="wcard-img">
-          <img src="projects/thumbnails/tabouni.png" alt="Tabouni House" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease" />
+          <img src="projects/thumbnails/tabouni.png" alt="Tabouni House" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
           <div class="wcard-overlay">
             <div class="ov-cat">Brand Identity & Visual System</div>
             <div class="ov-title">Tabouni House</div>
@@ -372,7 +371,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:38px 64p
 
       <div class="wcard" onclick="openProjectModal(this)">
         <div class="wcard-img">
-          <img src="projects/thumbnails/kastelo.png" alt="Kastelo" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease" />
+          <img src="projects/thumbnails/kastelo.png" alt="Kastelo" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
           <div class="wcard-overlay">
             <div class="ov-cat">Brand Identity & Crest Design</div>
             <div class="ov-title">Kastelo</div>
@@ -387,7 +386,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:38px 64p
 
       <div class="wcard" onclick="openProjectModal(this)">
         <div class="wcard-img">
-          <img src="projects/thumbnails/increo.png" alt="Increo" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease" />
+          <img src="projects/thumbnails/increo.png" alt="Increo" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
           <div class="wcard-overlay">
             <div class="ov-cat">Brand Identity & Visual System</div>
             <div class="ov-title">Increo</div>
@@ -402,7 +401,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:38px 64p
 
       <div class="wcard" onclick="openProjectModal(this)">
         <div class="wcard-img">
-          <img src="projects/thumbnails/herable.png" alt="Herable" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease" />
+          <img src="projects/thumbnails/herable.png" alt="Herable" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
           <div class="wcard-overlay">
             <div class="ov-cat">Brand Identity & Visual System</div>
             <div class="ov-title">Herable</div>
@@ -417,7 +416,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:38px 64p
 
       <div class="wcard" onclick="openProjectModal(this)">
         <div class="wcard-img">
-          <img src="projects/thumbnails/logofolio.png" alt="Logofolio 2026" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease" />
+          <img src="projects/thumbnails/logofolio.png" alt="Logofolio 2026" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
           <div class="wcard-overlay">
             <div class="ov-cat">Logo Collection</div>
             <div class="ov-title">Logofolio 2026</div>
@@ -594,11 +593,138 @@ document.querySelectorAll('a,button,.wcard,.cred-row,.svc-card,.proc-card,.phil-
 // Nav
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('sc',scrollY>50));
-// Reveal
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),i*80);obs.unobserve(e.target)}});
-},{threshold:.08});
-document.querySelectorAll('.rv,.rv1').forEach(el=>obs.observe(el));
+// GSAP Reveal & Cinematic Effects
+gsap.registerPlugin(ScrollTrigger);
+
+// Animate elements with .rv and .rv1 classes
+document.querySelectorAll('.rv, .rv1').forEach((el) => {
+  gsap.fromTo(el, 
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1, 
+      y: 0, 
+      duration: 1, 
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 85%",
+        toggleActions: "play none none none"
+      }
+    }
+  );
+});
+
+// Hero Parallax Layering (Orbs & Grid moving at different speeds on scroll)
+gsap.to(".hero-orb1", {
+    y: "40%",
+    ease: "none",
+    scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+    }
+});
+gsap.to(".hero-orb2", {
+    y: "-30%",
+    ease: "none",
+    scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+    }
+});
+
+// Tie hero parallax to mouse position
+document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    
+    gsap.to(".hero-orb1", { x: x * 2, y: y * 2, duration: 1, ease: "power2.out" });
+    gsap.to(".hero-orb2", { x: x * -3, y: y * -3, duration: 1, ease: "power2.out" });
+    gsap.to(".hero-bg-grid", { x: x, y: y, duration: 1, ease: "power2.out" });
+});
+
+// 3D Tilt Effect on Portfolio Cards (.wcard)
+document.querySelectorAll('.wcard').forEach(card => {
+    const img = card.querySelector('.wcard-img img');
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xPercent = (x / rect.width - 0.5) * 15;
+        const yPercent = (y / rect.height - 0.5) * -15;
+        
+        gsap.to(img, {
+            rotationY: xPercent,
+            rotationX: yPercent,
+            scale: 1.1,
+            duration: 0.5,
+            ease: "power2.out",
+            transformPerspective: 900,
+            transformOrigin: "center"
+        });
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        gsap.to(img, {
+            rotationY: 0,
+            rotationX: 0,
+            scale: 1,
+            duration: 1,
+            ease: "elastic.out(1, 0.3)"
+        });
+    });
+});
+
+// 3D Tilt Effect on About Profile Pic (.about-img-wrap)
+const aboutWrap = document.querySelector('.about-img-wrap');
+if (aboutWrap) {
+    aboutWrap.addEventListener('mousemove', e => {
+        const rect = aboutWrap.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xPercent = (x / rect.width - 0.5) * 20;
+        const yPercent = (y / rect.height - 0.5) * -20;
+        
+        gsap.to(aboutWrap, {
+            rotationY: xPercent,
+            rotationX: yPercent,
+            duration: 0.5,
+            ease: "power2.out",
+            transformPerspective: 900,
+            transformOrigin: "center"
+        });
+    });
+    
+    aboutWrap.addEventListener('mouseleave', () => {
+        gsap.to(aboutWrap, {
+            rotationY: 0,
+            rotationX: 0,
+            duration: 1,
+            ease: "elastic.out(1, 0.3)"
+        });
+    });
+}
+
+// Cinematic Pan & Zoom in About Image
+gsap.fromTo(".about-img-box img",
+    { scale: 1.2, x: "-5%" },
+    { 
+        scale: 1,
+        x: "5%",
+        ease: "none",
+        scrollTrigger: {
+            trigger: "#about",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+        }
+    }
+);
 
 // Mobile Menu Toggle
 document.getElementById('menu-btn').addEventListener('click', () => {
