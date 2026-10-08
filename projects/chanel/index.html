@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel perfumes for must By MohLaarvi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --brand-primary: #d4af37; 
+            --brand-secondary: #ffffff; 
+            --brand-bg: #050505; 
+            --brand-text: #f4f4f4; 
+        }
+
+        body {
+            background-color: var(--brand-bg);
+            color: var(--brand-text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #1a1a1a 0%, var(--brand-bg) 100%);
+        }
+
+        .header {
+            position: absolute;
+            top: 40px;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            letter-spacing: 4px;
+            margin: 0;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--brand-secondary), var(--brand-primary), var(--brand-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 1rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--brand-primary);
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        /* 3D Stage */
+        .carousel-stage {
+            width: 100vw;
+            height: 560px;
+            position: relative;
+            perspective: 1200px;
+            overflow: visible;
+            margin-top: 80px;
+            cursor: grab;
+        }
+
+        .carousel-stage:active {
+            cursor: grabbing;
+        }
+
+        /* Individual Card */
+        .card {
+            position: absolute;
+            width: 240px;
+            height: 360px;
+            left: 50%;
+            top: 50%;
+            margin-left: -120px; /* Half of width */
+            margin-top: -160px;  /* Slightly shifted up to give header more room */
+            border-radius: 16px;
+            background: #000;
+            overflow: hidden;
+            will-change: transform, opacity;
+            transition: box-shadow 0.4s ease;
+        }
+
+        .card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+            pointer-events: none;
+        }
+
+        /* Reflection overlay */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.5) 100%);
+            border-radius: 16px;
+            pointer-events: none;
+        }
+
+        /* CSS 3D hover on the front card */
+        .card.active-card:hover {
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Channel perfumes for must</h1>
+        <p>By MohLaarvi</p>
+    </div>
+
+    <div class="carousel-stage" id="stage">
+        <!-- Cards built by JS -->
+    </div>
+
+    <script>
+    (function() {
+        const images = [
+            'assets/media_1791426063894_65c8341e.png',   // No 5
+            'assets/media_1791426063898_26a52542.png',   // No 19
+            'assets/media_1791426050537_a7e8318d.jpg',   // Coco Mademoiselle
+            'assets/media_1791426050531_89071101.png',   // Gabrielle
+            'assets/media_1791426035531_e50ea04a.png',   // Allure Sensuelle
+            'assets/media_1791426035709_6a2b866e.png',   // Chance Eau Tendre
+            'assets/media_1791426050549_e01b4275.png',   // Chance Eau Vive
+            'assets/media_1791426050563_91502790.png',   // Chance Eau Fraiche
+            'assets/media_1791426050576_98b23b83.png',   // Chance Classic
+            'assets/media_1791426035658_3db247ba.png',   // Bleu de Chanel
+            'assets/media_1791426035686_2c00c541.png',   // Edition Blanche
+            'assets/media_1791426035754_6a1e06ed.jpg'    // Allure Homme Sport
+        ];
+
+        const N = images.length;
+        const stage = document.getElementById('stage');
+        const cards = [];
+
+        // Build card DOM
+        images.forEach((src, i) => {
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.innerHTML = '<img src="' + src + '" alt="Chanel Perfume">';
+            stage.appendChild(div);
+            cards.push(div);
+        });
+
+        // ---- CAROUSEL STATE ----
+        let currentIndex = 0;        // The float index (allows smooth interpolation)
+        let targetIndex = 0;         // Where we want to be
+        let autoTimer = null;
+        let isHovering = false;
+        let isDragging = false;
+
+        // ---- LAYOUT: Position each card based on its offset from center ----
+        function layoutCards() {
+            cards.forEach((card, i) => {
+                // Calculate the shortest distance around the circle from currentIndex to i
+                let offset = i - currentIndex;
+
+                // Wrap offset to [-N/2, N/2] for infinite loop effect
+                while (offset > N / 2) offset -= N;
+                while (offset < -N / 2) offset += N;
+
+                // Only render cards within visible range (performance + prevents overlap artifacts)
+                const visible = Math.abs(offset) <= 4;
+
+                if (!visible) {
+                    card.style.opacity = '0';
+                    card.style.pointerEvents = 'none';
+                    card.style.zIndex = '0';
+                    return;
+                }
+
+                // ---- COVERFLOW MATH ----
+                const absOffset = Math.abs(offset);
+
+                // X position: spread cards outward from center
+                const translateX = offset * 200;
+
+                // Z position: push non-center cards backward (creates the "stacked" depth)
+                const translateZ = -absOffset * 150;
+
+                // Y rotation: tilt side cards slightly toward center
+                const rotateY = -offset * 12;
+
+                // Scale: center card is full size, others shrink
+                const scale = 1 - absOffset * 0.08;
+
+                // Opacity: fade out distant cards
+                const opacity = Math.max(0, 1 - absOffset * 0.2);
+
+                // Z-index: center card is on top
+                const zIndex = Math.round((4 - absOffset) * 10);
+
+                // Shadow: center card glows gold
+                const isCenter = absOffset < 0.5;
+                const shadow = isCenter
+                    ? '0 25px 60px rgba(212, 175, 55, 0.35)'
+                    : '0 15px 40px rgba(0, 0, 0, 0.8)';
+
+                card.style.transform = 
+                    'translateX(' + translateX + 'px) ' +
+                    'translateZ(' + translateZ + 'px) ' +
+                    'rotateY(' + rotateY + 'deg) ' +
+                    'scale(' + scale + ')';
+                card.style.opacity = opacity;
+                card.style.zIndex = zIndex;
+                card.style.boxShadow = shadow;
+                card.style.pointerEvents = isCenter ? 'auto' : 'none';
+
+                // Toggle active class for CSS hover effect
+                if (isCenter) {
+                    card.classList.add('active-card');
+                } else {
+                    card.classList.remove('active-card');
+                }
+            });
+        }
+
+        // ---- ANIMATION LOOP (lerp for buttery smoothness) ----
+        function animate() {
+            // Smooth interpolation: ease toward target
+            const diff = targetIndex - currentIndex;
+            currentIndex += diff * 0.1;
+
+            // Snap when close enough to prevent infinite micro-movements
+            if (Math.abs(diff) < 0.001) {
+                currentIndex = targetIndex;
+            }
+
+            layoutCards();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // ---- AUTO-ADVANCE: 1.5s per card ----
+        function startAutoAdvance() {
+            stopAutoAdvance();
+            autoTimer = setInterval(() => {
+                if (!isHovering && !isDragging) {
+                    targetIndex += 1;
+                }
+            }, 2000);
+        }
+
+        function stopAutoAdvance() {
+            if (autoTimer) {
+                clearInterval(autoTimer);
+                autoTimer = null;
+            }
+        }
+
+        startAutoAdvance();
+
+        // ---- MOUSE WHEEL ----
+        stage.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+            if (delta > 0) {
+                targetIndex += 1;
+            } else if (delta < 0) {
+                targetIndex -= 1;
+            }
+            // Reset auto timer so it waits 1.5s from the last interaction
+            startAutoAdvance();
+        }, { passive: false });
+
+        // ---- KEYBOARD ARROWS ----
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                targetIndex += 1;
+                startAutoAdvance();
+            } else if (e.key === 'ArrowLeft') {
+                targetIndex -= 1;
+                startAutoAdvance();
+            }
+        });
+
+        // ---- MOUSE DRAG ----
+        let dragStartX = 0;
+        let dragStartIndex = 0;
+
+        stage.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            dragStartX = e.clientX;
+            dragStartIndex = targetIndex;
+            e.preventDefault();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            const dx = e.clientX - dragStartX;
+            targetIndex = dragStartIndex - dx / 200;
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (isDragging) {
+                isDragging = false;
+                // Snap to nearest card
+                targetIndex = Math.round(targetIndex);
+                startAutoAdvance();
+            }
+        });
+
+        // ---- HOVER PAUSE ----
+        stage.addEventListener('mouseenter', () => { isHovering = true; });
+        stage.addEventListener('mouseleave', () => {
+            isHovering = false;
+            isDragging = false;
+        });
+
+    })();
+    </script>
+</body>
+</html>
