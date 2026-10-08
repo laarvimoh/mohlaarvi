@@ -428,6 +428,21 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:38px 64p
           <div class="wcard-type">Collection of logos and marks designed in 2026</div>
         </div>
       </div>
+
+      <div class="wcard" onclick="openProjectModal(this)">
+        <div class="wcard-img">
+          <img src="projects/chanel/assets/media_1791426063894_65c8341e.png" alt="Chanel Perfumes" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+          <div class="wcard-overlay">
+            <div class="ov-cat">Interactive 3D Experience</div>
+            <div class="ov-title">Chanel Perfumes</div>
+            <div class="ov-link">View Project <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="wcard-meta">
+          <div class="wcard-name">Chanel Perfumes</div>
+          <div class="wcard-type">Interactive 3D Carousel Presentation</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -755,6 +770,10 @@ const projectData = {
   "Logofolio 2026": {
     desc: "A collection of logos and marks designed in 2026.",
     images: ["projects/logofolio/logofolio.png"]
+  },
+  "Chanel Perfumes": {
+    desc: "An immersive 3D carousel presentation for Chanel fragrances.",
+    iframe: "projects/chanel/index.html"
   }
 };
 
@@ -774,7 +793,9 @@ function openProjectModal(card) {
   const data = projectData[englishTitle];
   
   let imagesHtml = '';
-  if (data && data.images && data.images.length > 0) {
+  if (data && data.iframe) {
+     imagesHtml = '<iframe src="' + data.iframe + '" style="width: 100%; height: 650px; border: none; border-radius: 8px;"></iframe>';
+  } else if (data && data.images && data.images.length > 0) {
      imagesHtml = '<div style="display: flex; flex-direction: column; gap: 0;">' + data.images.map((src, i) => '<img src="' + src + '" alt="' + displayTitle + ' case study image ' + (i + 1) + '" style="margin-bottom: 0; border-radius: 0; width: 100%; display: block;" />').join('') + '</div>';
   } else {
      imagesHtml = '<img src="' + thumbSrc + '" alt="' + displayTitle + ' thumbnail" />';
@@ -983,6 +1004,10 @@ window.addEventListener('DOMContentLoaded', () => {
     "Last name": "الاسم الأخير",
     "What are you building? What problem needs solving": "ماذا تبني؟ ما هي المشكلة التي تحتاج إلى حل؟",
     "Logofolio 2026": "مجموعة شعارات 2026",
+    "Chanel Perfumes": "عطور شانيل",
+    "Interactive 3D Experience": "تجربة ثلاثية الأبعاد تفاعلية",
+    "Interactive 3D Carousel Presentation": "عرض تفاعلي ثلاثي الأبعاد",
+    "An immersive 3D carousel presentation for Chanel fragrances.": "عرض تفاعلي ثلاثي الأبعاد غامر لعطور شانيل.",
     "Co-Founder & Creative Director — Increo Studio": "مؤسس ومدير إبداعي — Increo Studio",
     "Senior Graphic Designer — Orion Lab": "مصمم جرافيك رئيسي — Orion Lab",
     "Send Message →": "إرسال الرسالة ←",
