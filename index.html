@@ -754,7 +754,7 @@ const projectData = {
   },
   "Logofolio 2026": {
     desc: "A collection of logos and marks designed in 2026.",
-    images: ["projects/logofolio/logofolio.jpg"]
+    images: ["projects/logofolio/logofolio.png"]
   }
 };
 
@@ -766,30 +766,31 @@ function openProjectModal(card) {
   const modal = document.getElementById('project-modal');
   const body = document.getElementById('modal-body');
   
-  const title = card.querySelector('.wcard-name').textContent.trim();
+  const displayTitle = card.querySelector('.wcard-name').textContent.trim();
+  const englishTitle = card.querySelector('.wcard-img img').alt.trim();
   const type = card.querySelector('.wcard-type').textContent.trim();
   const thumbSrc = card.querySelector('.wcard-img img').src;
   
-  const data = projectData[title];
+  const data = projectData[englishTitle];
   
   let imagesHtml = '';
   if (data && data.images && data.images.length > 0) {
-     imagesHtml = '<div style="display: flex; flex-direction: column; gap: 0;">' + data.images.map((src, i) => '<img src="' + src + '" alt="' + title + ' case study image ' + (i + 1) + '" style="margin-bottom: 0; border-radius: 0; width: 100%; display: block;" />').join('') + '</div>';
+     imagesHtml = '<div style="display: flex; flex-direction: column; gap: 0;">' + data.images.map((src, i) => '<img src="' + src + '" alt="' + displayTitle + ' case study image ' + (i + 1) + '" style="margin-bottom: 0; border-radius: 0; width: 100%; display: block;" />').join('') + '</div>';
   } else {
-     imagesHtml = '<img src="' + thumbSrc + '" alt="' + title + ' thumbnail" />';
+     imagesHtml = '<img src="' + thumbSrc + '" alt="' + displayTitle + ' thumbnail" />';
   }
   
-  const descHtml = data && data.desc ? data.desc : 'Detailed case study for ' + title + ' will be added here.';
+  const descHtml = data && data.desc ? data.desc : 'Detailed case study for ' + displayTitle + ' will be added here.';
   
   const behanceLink = '<div style="margin-top: 40px; margin-bottom: 20px; text-align: center;"><a href="https://www.behance.net/laarvimoh" target="_blank" style="color: var(--blue); text-decoration: none; font-weight: 600; font-size: 14px;">See more on Behance <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle;"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>';
   
-  body.innerHTML = '<div class="modal-type">' + type + '</div><div class="modal-title">' + title + '</div><div class="modal-desc">' + descHtml + '</div>' + imagesHtml + behanceLink;
+  body.innerHTML = '<div class="modal-type">' + type + '</div><div class="modal-title">' + displayTitle + '</div><div class="modal-desc">' + descHtml + '</div>' + imagesHtml + behanceLink;
   
   modal.style.display = 'block';
   setTimeout(() => modal.classList.add('show'), 10);
   document.body.style.overflow = 'hidden';
   
-  window.history.pushState(null, '', getProjectHash(title));
+  window.history.pushState(null, '', getProjectHash(englishTitle));
 }
 
 function closeModal() {
@@ -819,7 +820,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash;
     const cards = document.querySelectorAll('.wcard');
     for (const card of cards) {
-      const title = card.querySelector('.wcard-name').textContent.trim();
+      const title = card.querySelector('.wcard-img img').alt.trim();
       if (getProjectHash(title) === hash) {
         openProjectModal(card);
         break;
