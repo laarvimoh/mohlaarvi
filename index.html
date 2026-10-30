@@ -593,6 +593,21 @@ html[dir="rtl"] .form-send { text-align: center; }
 
       <div class="wcard" onclick="openProjectModal(this)">
         <div class="wcard-img">
+          <img src="projects/thumbnails/packaging-showcase.png" alt="Packaging Design Showcase" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
+          <div class="wcard-overlay">
+            <div class="ov-cat">Packaging Design</div>
+            <div class="ov-title">Packaging Design Showcase</div>
+            <div class="ov-link">View Project <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+        <div class="wcard-meta">
+          <div class="wcard-name">Packaging Design Showcase</div>
+          <div class="wcard-type">Pharmaceutical packaging &amp; 3D visual showcase</div>
+        </div>
+      </div>
+
+      <div class="wcard" onclick="openProjectModal(this)">
+        <div class="wcard-img">
           <img src="projects/chanel/assets/media_1791426063894_65c8341e.png" alt="Chanel Perfumes" style="width:100%;height:100%;object-fit:cover;object-position:center;" />
           <div class="wcard-overlay">
             <div class="ov-cat">Interactive 3D Experience</div>
@@ -933,6 +948,11 @@ const projectData = {
     desc: "A collection of logos and marks designed in 2026.",
     images: ["projects/logofolio/logofolio.png"]
   },
+  "Packaging Design Showcase": {
+    desc: "A comprehensive showcase of pharmaceutical packaging design, dieline templates, and realistic 3D production renders.",
+    images: ["projects/packaging/packaging-showcase.png"],
+    maxWidth: "680px"
+  },
   "Chanel Perfumes": {
     desc: "An immersive 3D carousel presentation for Chanel fragrances.",
     iframe: "projects/chanel/index.html"
@@ -955,12 +975,13 @@ function openProjectModal(card) {
   const data = projectData[englishTitle];
   
   let imagesHtml = '';
+  const imgMaxWidth = (data && data.maxWidth) ? data.maxWidth : '100%';
   if (data && data.iframe) {
      imagesHtml = '<iframe src="' + data.iframe + '" style="width: 100%; height: 650px; border: none; border-radius: 8px;"></iframe>';
   } else if (data && data.images && data.images.length > 0) {
-     imagesHtml = '<div style="display: flex; flex-direction: column; gap: 0;">' + data.images.map((src, i) => '<img src="' + src + '" alt="' + displayTitle + ' case study image ' + (i + 1) + '" style="margin-bottom: 0; border-radius: 0; width: 100%; display: block;" />').join('') + '</div>';
+     imagesHtml = '<div style="display: flex; flex-direction: column; gap: 0; align-items: center; max-width: ' + imgMaxWidth + '; margin: 0 auto;">' + data.images.map((src, i) => '<img src="' + src + '" alt="' + displayTitle + ' case study image ' + (i + 1) + '" style="margin-bottom: 0; border-radius: 8px; width: 100%; display: block;" />').join('') + '</div>';
   } else {
-     imagesHtml = '<img src="' + thumbSrc + '" alt="' + displayTitle + ' thumbnail" />';
+     imagesHtml = '<div style="max-width: ' + imgMaxWidth + '; margin: 0 auto;"><img src="' + thumbSrc + '" alt="' + displayTitle + ' thumbnail" style="width: 100%; display: block;" /></div>';
   }
   
   const descHtml = data && data.desc ? data.desc : 'Detailed case study for ' + displayTitle + ' will be added here.';
@@ -1087,6 +1108,7 @@ window.addEventListener('DOMContentLoaded', () => {
     "Increo visual system and identity design.": "تصميم النظام المرئي والهوية لـ Increo.",
     "Herable brand identity and visual language.": "تصميم الهوية البصرية واللغة المرئية لـ Herable.",
     "A collection of logos and marks designed in 2026.": "مجموعة من الشعارات والعلامات التجارية المصممة عام 2026.",
+    "A comprehensive showcase of pharmaceutical packaging design, dieline templates, and realistic 3D production renders.": "معرض شامل لتصميم عبوات الأدوية، وقوالب خطوط القص (Dielines)، ورندرات ثلاثية الأبعاد واقعية للإنتاج.",
     "A process built on ": "عملية مبنية على ",
     "clarity and craft.": "الوضوح والإتقان.",
     "Beautiful work that doesn't serve a goal is just art. Every visual choice is connected to a clear strategic intention.": "العمل الجميل الذي لا يخدم هدفاً هو مجرد فن. كل اختيار مرئي مرتبط بقصد استراتيجي واضح.",
@@ -1166,6 +1188,11 @@ window.addEventListener('DOMContentLoaded', () => {
     "Last name": "الاسم الأخير",
     "What are you building? What problem needs solving": "ماذا تبني؟ ما هي المشكلة التي تحتاج إلى حل؟",
     "Logofolio 2026": "مجموعة شعارات 2026",
+    "Packaging Design Showcase": "معرض تصاميم التغليف",
+    "Packaging design showcase": "معرض تصاميم التغليف",
+    "Packaging Design": "تصميم التغليف",
+    "Pharmaceutical packaging & 3D visual showcase": "معرض التغليف الصيدلاني والتجسيد ثلاثي الأبعاد",
+    "Pharmaceutical packaging &amp; 3D visual showcase": "معرض التغليف الصيدلاني والتجسيد ثلاثي الأبعاد",
     "Chanel Perfumes": "عطور شانيل",
     "Interactive 3D Experience": "تجربة ثلاثية الأبعاد تفاعلية",
     "Interactive 3D Carousel Presentation": "عرض تفاعلي ثلاثي الأبعاد",
